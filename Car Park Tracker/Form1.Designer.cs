@@ -159,7 +159,7 @@
             this.ListBoxLicencePlateMain.Name = "ListBoxLicencePlateMain";
             this.ListBoxLicencePlateMain.Size = new System.Drawing.Size(150, 504);
             this.ListBoxLicencePlateMain.TabIndex = 8;
-            this.ListBoxLicencePlateMain.SelectedIndexChanged += new System.EventHandler(this.ListBoxLicencePlateMainList_SelectedIndexChanged);
+            this.ListBoxLicencePlateMain.SelectedIndexChanged += new System.EventHandler(this.ListBoxLicencePlateMain_SelectedIndexChanged);
             this.ListBoxLicencePlateMain.DoubleClick += new System.EventHandler(this.ListBoxLicencePlateMain_DoubleClick);
             // 
             // ListBoxLicencePlateTagged

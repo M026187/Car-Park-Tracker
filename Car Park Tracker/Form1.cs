@@ -385,14 +385,14 @@ namespace Car_Park_Tracker
                 // Clear user input text box
                 TextBoxUserInput.Clear();
                 // Display to user that the user selected Licence Plate has been tagged
-                ToolStripStatusLabelMessage.Text = selected + " Plate tagged for investigation.";
+                ToolStripStatusLabelMessage.Text = selected + " Licence Plate tagged for investigation.";
             }
         }
         #endregion
         
         #region List Box Licence Plate Main List Selected Index Changed
         // Method to handle a change in selected index of the Main list box
-        private void ListBoxLicencePlateMainList_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxLicencePlateMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Declare variable and assign to the value of the selected Licence Plate in the Main list box
             string selectedItem = ListBoxLicencePlateMain.SelectedItem.ToString();
@@ -421,7 +421,7 @@ namespace Car_Park_Tracker
                 }
         }
         #endregion
-        #region List Box Licence Plate Tagged Selected Index Changed
+        #region List Box Licence Plate Tagged List Selected Index Changed
         // Method to handle a change in selected index of the Tagged list box 
         private void ListBoxLicencePlateTagged_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -448,7 +448,7 @@ namespace Car_Park_Tracker
             // Clear the user input text box
             TextBoxUserInput.Clear();
             // Display to user that the selected Licence Plate has been removed from the Tagged list
-            ToolStripStatusLabelMessage.Text = selected + " Plate removed from tagged for investigation.";
+            ToolStripStatusLabelMessage.Text = selected + " Licence Plate removed from tagged list.";
         }
         #endregion
         
