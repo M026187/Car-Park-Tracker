@@ -129,6 +129,10 @@ namespace Car_Park_Tracker
             saveTextFileDialog.Filter = "txt files (*.txt)|*.txt";
             // Give title to the dialog box
             saveTextFileDialog.Title = "Save Licence Plate Text File";
+            // Auto populate the file name
+            string fileName = AutomaticPopulateFileName();
+            // Display auto-populated file name
+            saveTextFileDialog.FileName = fileName;
             DialogResult sr = saveTextFileDialog.ShowDialog();
             // Save the text file when user clicks OK, else return
             if (sr == DialogResult.OK)
@@ -307,7 +311,7 @@ namespace Car_Park_Tracker
                     // Show found Licence Plate in Main list box selected
                     ListBoxLicencePlateMain.SelectedIndex = i;
                     // Display to user that the Licence Plate has been found
-                    ToolStripStatusLabelMessage.Text = target + " Licence Plate Found (Linear Search)";
+                    ToolStripStatusLabelMessage.Text = target + " Licence Plate Found (Linear Search) at index: " + i;
                     return;
                 }
             }
@@ -344,7 +348,7 @@ namespace Car_Park_Tracker
                 // Show found Licence Plate in Main list box selected
                 ListBoxLicencePlateMain.SelectedIndex = index;
                 // Display to user that the Licence Plate has been found
-                ToolStripStatusLabelMessage.Text = target + " Licence Plate Found (Binary Search).";
+                ToolStripStatusLabelMessage.Text = target + " Licence Plate Found (Binary Search) at index: " + index;
             }
             // Licence Plate has not been found
             else
@@ -451,7 +455,30 @@ namespace Car_Park_Tracker
             ToolStripStatusLabelMessage.Text = selected + " Licence Plate removed from tagged list.";
         }
         #endregion
-        
+
+        #region Automatic Populate File Name
+        // Method to Automatically Populate the File Name
+        private string AutomaticPopulateFileName()
+        {
+            // Declare variable and initialise to 1
+            int fileCounter = 1;
+            // Declare variable to store file name
+            string fileName;
+            // Declare variable to store full file path
+            string fullPath;
+            do
+            {
+                // Assign file name to specific file name format
+                fileName = $"day_{fileCounter:D2}.txt";
+                // Assign full file path to save folder location and file name combined
+                fullPath = Path.Combine(saveFolder, fileName);
+                // Increment the file counter value
+                fileCounter++;
+            } while (File.Exists(fullPath)); // Continue to cycle through file names until a unique name is chosen
+            // Save the text file to the full path name found to be unique
+            return fileName;
+        }
+        #endregion
         #region Display Licence Plate Data
         // Method to display the Main list in the Main list box
         private void DisplayMainList()
@@ -491,22 +518,8 @@ namespace Car_Park_Tracker
         // Method to handle closing the Car Park Tracker Form
         private void FormCarParkTracker_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            // Declare variable and initialise to 1
-            int fileCounter = 1;
-            // Declare variable to store file name
-            string fileName;
-            // Declare variable to store full file path
-            string fullPath;
-            do
-            {
-                // Assign file name to specific file name format
-                fileName = $"day_{fileCounter:D2}.txt";
-                // Assign full file path to save folder location and file name combined
-                fullPath = Path.Combine(saveFolder, fileName);
-                // Increment the file counter value
-                fileCounter++;
-            } while (File.Exists(fullPath)); // Continue to cycle through file names until a unique name is chosen
-            // Save the text file to the full path name found to be unique
+            string fileName = AutomaticPopulateFileName();
+            string fullPath = Path.Combine(saveFolder, fileName);
             SaveTextFile(fullPath);
         }
         #endregion
